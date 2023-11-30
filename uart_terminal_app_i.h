@@ -9,7 +9,7 @@
 #include <gui/view_dispatcher.h>
 #include <gui/scene_manager.h>
 #include <gui/modules/text_box.h>
-#include <gui/modules/submenu.h>
+#include <gui/modules/widget.h>
 #include <gui/modules/variable_item_list.h>
 #include "uart_text_input.h"
 #include "uart_hex_input.h"
@@ -31,7 +31,7 @@ struct UART_TerminalApp {
     TextBox* text_box;
     UART_TextInput* text_input;
     UART_TextInput* hex_input;
-
+    Widget* widget;
     VariableItemList* var_item_list;
     VariableItemList* setup_var_item_list;
     UART_TerminalUart* uart;
@@ -44,8 +44,6 @@ struct UART_TerminalApp {
 
     bool is_command;
     bool is_custom_tx_string;
-    bool focus_console_start;
-    bool show_stopscan_tip;
     bool hex_mode;
     uint8_t uart_ch;
     uint8_t new_uart_ch;
@@ -60,4 +58,5 @@ typedef enum {
     UART_TerminalAppViewConsoleOutput,
     UART_TerminalAppViewTextInput,
     UART_TerminalAppViewHexInput,
+    UART_TerminalAppViewHelp,
 } UART_TerminalAppView;

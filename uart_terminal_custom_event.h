@@ -6,4 +6,5 @@ typedef enum {
     UART_TerminalEventStartConsole,
     UART_TerminalEventStartKeyboardText,
     UART_TerminalEventStartKeyboardHex,
+    UART_TerminalEventStartHelp,
 } UART_TerminalCustomEvent;

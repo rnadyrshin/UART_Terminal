@@ -50,11 +50,7 @@ void uart_terminal_scene_console_output_on_enter(void* context) {
     TextBox* text_box = app->text_box;
     text_box_reset(app->text_box);
     text_box_set_font(text_box, TextBoxFontText);
-    if(app->focus_console_start) {
-        text_box_set_focus(text_box, TextBoxFocusStart);
-    } else {
-        text_box_set_focus(text_box, TextBoxFocusEnd);
-    }
+    text_box_set_focus(text_box, TextBoxFocusEnd);
 
     bool need_reinit = false;
 
@@ -78,19 +74,6 @@ void uart_terminal_scene_console_output_on_enter(void* context) {
     if(app->is_command) {
         furi_string_reset(app->text_box_store);
         app->text_box_store_strlen = 0;
-
-        if(0 == strncmp("help", app->selected_tx_string, strlen("help"))) {
-            const char* help_msg =
-                "UART terminal for Flipper\n\nI'm in github: cool4uma\n\nThis app is a modified\nWiFi Marauder companion,\nThanks 0xchocolate(github)\nfor great code and app.\n\n";
-            furi_string_cat_str(app->text_box_store, help_msg);
-            app->text_box_store_strlen += strlen(help_msg);
-        }
-
-        if(app->show_stopscan_tip) {
-            const char* help_msg = "Press BACK to return\n";
-            furi_string_cat_str(app->text_box_store, help_msg);
-            app->text_box_store_strlen += strlen(help_msg);
-        }
     }
 
     // Set starting text - for "View Log", this will just be what was already in the text box store

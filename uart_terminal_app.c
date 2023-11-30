@@ -60,6 +60,9 @@ UART_TerminalApp* uart_terminal_app_alloc() {
         app->setup_selected_option_index[i] = 0;
     }
 
+    app->widget = widget_alloc();
+    view_dispatcher_add_view(app->view_dispatcher, UART_TerminalAppViewHelp, widget_get_view(app->widget));
+
     app->text_box = text_box_alloc();
     view_dispatcher_add_view(
         app->view_dispatcher, UART_TerminalAppViewConsoleOutput, text_box_get_view(app->text_box));

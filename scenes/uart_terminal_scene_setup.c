@@ -55,6 +55,10 @@ static void uart_terminal_scene_setup_var_list_change_callback(VariableItem* ite
         if(app->hex_mode != new_mode) {
             app->hex_mode = new_mode;
             app->text_input_store[0] = '\0';
+            app->selected_menu_index = 0;
+            for(int i = 0; i < START_MENU_ITEMS; ++i) {
+                app->selected_option_index[i] = 0;
+            }
         }
     }
 }
